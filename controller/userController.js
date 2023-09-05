@@ -58,3 +58,15 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
     });
 
 });
+// get logged user details 
+
+exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+        return next(new ErrorHandler("Can't load user with this id", 401))
+    }
+    res.status(200).json({
+        success: true,
+        user
+    });
+});
