@@ -8,7 +8,7 @@ const database = (module.exports = () => {
     }
     try {
         mongoose.set('strictQuery', true);
-        mongoose.connect(`mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0.gizj8al.mongodb.net/?retryWrites=true&w=majority`,
+        mongoose.connect(`mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0.ecxgrmw.mongodb.net/?retryWrites=true&w=majority`,
             connectionParams
         );
         console.log("database connected");
