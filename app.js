@@ -24,13 +24,23 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const user = require("./routes/userRoute");
 // product root api 
 const product = require("./routes/productRoute");
+// order 
+const order = require("./routes/orderRouter");
+// payment 
+const payment = require("./routes/paymentRouter");
+const post = require("./routes/postRouter");
 
 // API endpoint 
 app.use("/api/v1", user);
 // product API endpoint 
 app.use("/api/v1", product);
+
+app.use("/api/v1", order);
+app.use("/api/v1", payment);
+
 // custom middleware 
 app.use(errorMiddleware);
+
 
 
 module.exports = app
