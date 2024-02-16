@@ -6,16 +6,14 @@ const { newOrder, getSingleOrder, getAllOrders, myOrders, updateOrder, deleteOrd
 const router = express.Router();
 
 router.route("/order/new").post(isAuthenticatedUser, newOrder);
-router.route("/order/:id").get(isAuthenticatedUser, authorizeRoles("admin"), getSingleOrder);
+router.route("/order/:id").get(isAuthenticatedUser,getSingleOrder);
 router.route("/admin/orders").get(isAuthenticatedUser, authorizeRoles("admin"), getAllOrders);
 // get logged user order 
-router.route("/order/me").get(isAuthenticatedUser, myOrders);
+router.route("/orders/me").get(isAuthenticatedUser, myOrders);
 
 // delete or update orders by admin 
 router.route("/admin/order/:id")
     .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteOrder)
     .put(isAuthenticatedUser, authorizeRoles("admin"), updateOrder);
-
-
 
 module.exports = router;

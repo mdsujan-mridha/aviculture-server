@@ -13,12 +13,14 @@ router.route("/product/new").post(isAuthenticatedUser, createProduct);
 router.route("/products").get(getAllProducts);
 // get a single product 
 router.route("/product/:id").get(getProductDetails);
+// get admin product 
+
 // update product by admin 
-router.route("/product/:id")
+router.route("/admin/product/:id")
     .put(isAuthenticatedUser, updateProduct)
-    .delete(isAuthenticatedUser, deleteProduct);
+    .delete(isAuthenticatedUser, authorizeRoles("admin"), deleteProduct);
 
 // get all product by admin 
-router.route("/admin/product").get(isAuthenticatedUser, authorizeRoles("admin"), getAdminProduct)
+router.route("/admin/products").get(isAuthenticatedUser, authorizeRoles("admin"), getAdminProduct)
 
 module.exports = router;

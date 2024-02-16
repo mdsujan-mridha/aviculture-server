@@ -37,6 +37,7 @@ app.use("/api/v1", product);
 
 app.use("/api/v1", order);
 app.use("/api/v1", payment);
+app.use("/api/v1", post)
 
 // custom middleware 
 app.use(errorMiddleware);

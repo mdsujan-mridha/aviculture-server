@@ -54,7 +54,7 @@ exports.getPostDetails = catchAsyncError(async (req, res, next) => {
 // update post 
 exports.updatePost = catchAsyncError(async (req, res, next) => {
 
-    const post = await Post.findById(req.params.id);
+    let post = await Post.findById(req.params.id);
     if (!post) {
         return next(new ErrorHandler("Post not found!", 404))
     }
