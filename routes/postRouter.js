@@ -6,7 +6,7 @@ const { isAuthenticatedUser, authorizeRoles } = require("../middleware/auth");
 const router = express.Router();
 
 // create post by admin
-router.route("/admin/post/new").post(createPost);
+router.route("/admin/post/new").post(isAuthenticatedUser,createPost);
 
 // get all post 
 router.route("/posts").get(getAllPost);
