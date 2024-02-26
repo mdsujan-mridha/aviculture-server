@@ -3,7 +3,6 @@
 const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema({
-
     name: {
         type: String,
         required: [true, "Please Enter your product name"],
@@ -17,11 +16,16 @@ const productSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-
     price: {
         type: Number,
         required: [true, "Please Enter product Price"],
         maxLength: [8, "Price cannot exceed 8 characters"],
+    },
+    discount: {
+        type: Number,
+        required: [true, "Please Enter product Price"],
+        maxLength: [8, "Price cannot exceed 8 characters"],
+        default: 0,
     },
     images: [
         {
@@ -49,40 +53,36 @@ const productSchema = new mongoose.Schema({
         type: Number,
         default: 0,
     },
-    // reviews: [
-    //     {
-    //         user: {
-    //             type: mongoose.Schema.ObjectId,
-    //             ref: "User",
-    //             required: true,
-    //         },
-    //         name: {
-    //             type: String,
-    //             required: true,
-    //         },
-    //         rating: {
-    //             type: Number,
-    //             required: true,
-    //         },
-    //         comment: {
-    //             type: String,
-    //             required: true,
-    //         },
-    //     },
-    // ],
+    reviews: [
+        {
+            user: {
+                type: mongoose.Schema.ObjectId,
+                ref: "User",
+                required: true,
+            },
+            name: {
+                type: String,
+                required: true,
+            },
+            rating: {
+                type: Number,
+                required: true,
+            },
+            comment: {
+                type: String,
+                required: true,
+            },
+        },
+    ],
     user: {
         type: mongoose.Schema.ObjectId,
         ref: "User",
         required: true,
     },
-
     createdAt: {
         type: Date,
         default: Date.now,
     },
 });
-
-
-
 
 module.exports = mongoose.model("Product", productSchema);
