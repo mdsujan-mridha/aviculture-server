@@ -27,7 +27,7 @@ cloudinary.config({
 
 // sendFile will go here 
 app.get("/", async (req, res) => {
-    res.sendFile(path.join(__dirname, '/index.html'));
+    res.send("Server is working")
 });
 
 // listen app when anyone hit on api from client or any browser 
