@@ -5,6 +5,12 @@ const cloudinary = require("cloudinary")
 const port = process.env.PORT || 5000;
 const path = require('path');
 
+//handler uncaught type error
+process.on("uncaughtException", err => {
+    console.log(`Err: ${err.message}`);
+    console.log(`Shutting down the server due to uncaught Exception `);
+    process.exit(1);
+});
 
 dotenv.config({ path: "./config/config.env" });
 
@@ -21,17 +27,21 @@ cloudinary.config({
 
 // sendFile will go here 
 app.get("/", async (req, res) => {
-
     res.sendFile(path.join(__dirname, '/index.html'));
-
 });
 
-app.get("/", (req, res, next) => {
-    res.send("Aviculture server is working");
-    // console.log("Aviculture server is working");
-})
+// listen app when anyone hit on api from client or any browser 
+const server = app.listen(port, () => {
+    console.log(`Server is working on http://localhost:${port}`)
+});
 
-app.listen(port, () => {
-    console.log(`Server is working with http://localhost:${port}`);
-})
+// handle Promise Rejection
+process.on("unhandledRejection", err => {
+    console.log(`Err: ${err.message}`)
+    console.log(`Shutting down the server due to Unhandled Promise Rejection`)
+
+    server.close(() => {
+        process.exit(1);
+    });
+});
 
