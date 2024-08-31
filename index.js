@@ -3,7 +3,7 @@ const app = require("./app");
 const database = require("./config/dbConnect");
 const cloudinary = require("cloudinary")
 const port = process.env.PORT || 5000;
-const path = require('path');
+
 
 //handler uncaught type error
 process.on("uncaughtException", err => {
